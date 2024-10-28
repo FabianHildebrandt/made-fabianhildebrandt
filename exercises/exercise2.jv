@@ -1,0 +1,59 @@
+pipeline TreesPipeline {
+    TreesFileExtractor
+        -> TreesTextFileInterpreter
+        -> TreesCsvInterpreter
+        -> TreesTableInterpreter
+        -> TreesLoader;
+
+    // block TreesFileExtractor oftype LocalFileExtractor {
+    //     filePath : "data/ex2_stadt-neuss-herbstpflanzung-2023.csv";
+    // }
+
+    block TreesFileExtractor oftype HttpExtractor {
+        // Download the CSV data from the URL source 
+        url: "https://opendata.rhein-kreis-neuss.de/api/v2/catalog/datasets/stadt-neuss-herbstpflanzung-2023/exports/csv";
+    }
+    // interpret file as a text file to further convert it to CSV
+    block TreesTextFileInterpreter oftype TextFileInterpreter { }
+
+    // Convert TextFile to Sheet to work with the columns
+    block TreesCsvInterpreter oftype CSVInterpreter {
+        delimiter: ";";
+    }
+
+    block TreesTableInterpreter oftype TableInterpreter {
+        header : true;
+        // leave out the column "baumart_deutsch"
+        columns : [
+            "lfd_Nr" oftype integer,
+            "stadtteil" oftype CityQuarter,
+            "standort" oftype text,
+            "baumart_botanisch" oftype text,
+            "id" oftype Location,
+            "baumfamilie" oftype text
+        ];
+    }
+    // load adapted Table to an SQLite database in the table airports 
+    block TreesLoader oftype SQLiteLoader {
+        table: "trees";
+        file: "./trees.sqlite";
+    }
+
+    valuetype Location oftype text {
+        constraints : [
+            ValidGeoCoordinate
+        ];
+    }
+    constraint ValidGeoCoordinate oftype RegexConstraint {
+        regex : /^[0-9]{1,3}\.[0-9]+,\s*[0-9]{1,3}\.[0-9]+$/ ;
+    }
+
+    valuetype CityQuarter oftype text {
+        constraints : [
+            OnlyVogelsang
+        ];
+    }
+    constraint OnlyVogelsang on text: value matches /^Vogelsang.*/;
+
+
+}

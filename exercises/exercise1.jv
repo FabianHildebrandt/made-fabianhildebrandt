@@ -14,7 +14,6 @@ pipeline AirportsPipeline {
 
     // Convert TextFile to Sheet to work with the columns
     block AirportsCsvInterpreter oftype CSVInterpreter {
-        enclosing: '""';
         delimiter: ";";
     }
 
