@@ -53,7 +53,9 @@ pipeline TreesPipeline {
             OnlyVogelsang
         ];
     }
-    constraint OnlyVogelsang on text: value matches /^Vogelsang.*$/;
+    constraint OnlyVogelsang oftype RegexConstraint {
+        regex : /^Vogelsang.*$/;
+    } 
 
 
 }
