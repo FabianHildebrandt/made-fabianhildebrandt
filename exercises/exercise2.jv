@@ -25,7 +25,7 @@ pipeline TreesPipeline {
         header : true;
         // leave out the column "baumart_deutsch"
         columns : [
-            "lfd_Nr" oftype integer,
+            "lfd_nr" oftype integer,
             "stadtteil" oftype CityQuarter,
             "standort" oftype text,
             "baumart_botanisch" oftype text,
@@ -53,7 +53,7 @@ pipeline TreesPipeline {
             OnlyVogelsang
         ];
     }
-    constraint OnlyVogelsang on text: value matches /^Vogelsang.*/;
+    constraint OnlyVogelsang on text: value matches /^Vogelsang.*$/;
 
 
 }
