@@ -79,8 +79,12 @@ Short description of the DataSource.
 ## Work Packages
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
-0. Setup a table of indicators, their weights, availability in the datasources (id), 
-1. Example Issue [#Test][i1]
-2. ...
-
-[i1]: https://github.com/jvalue/made-template/issues/1
+1. Setup a table of indicators [#1](https://github.com/FabianHildebrandt/made-fabianhildebrandt/issues/1)
+2. Identifying suitable datasources [#2](https://github.com/FabianHildebrandt/made-fabianhildebrandt/issues/2)
+3. Data inspection & verification of all datasources [#3](https://github.com/FabianHildebrandt/made-fabianhildebrandt/issues/3)
+4. Creation of an automated data pipeline for the selected datasets [#4](https://github.com/FabianHildebrandt/made-fabianhildebrandt/issues/4)
+5. Data Report [#5](https://github.com/FabianHildebrandt/made-fabianhildebrandt/issues/5)
+6. Implement automated testing in the pipeline [#6](https://github.com/FabianHildebrandt/made-fabianhildebrandt/issues/6)
+7. Continuous Integration [#7](https://github.com/FabianHildebrandt/made-fabianhildebrandt/issues/7)
+8. Data analysis [#8](https://github.com/FabianHildebrandt/made-fabianhildebrandt/issues/8)
+9. Project Report [#9](https://github.com/FabianHildebrandt/made-fabianhildebrandt/issues/9)
