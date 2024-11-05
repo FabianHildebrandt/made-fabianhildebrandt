@@ -7,18 +7,15 @@
 ## Main Question
 
 <!-- Think about one main question you want to answer based on the data. -->
-1. Which countries are America's current sustainability champions, the rising stars and latecomers?
+**Which countries are America's current sustainability champions, the rising stars and latecomers?**
 
 ## Description
 
 <!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
-### Brainstorming
-- Three overall ratings: 1 overall champion, 1 rising star and 1 latecomer 
+- Three  ratings: 1 overall champion, 1 rising star and 1 latecomer 
 - Three categories: Environmental champion, Economic champion, Social champion
-- 3-5 indicators per category (depending on data availability)
-- Fair comparison: comparative metrics that don't penalise small & poor countries
-- Possible comparison of indicators and their weights:
-- energy mix, CO2 footprint, resource recycling, resource usage
+- 2-5 indicators per category (depending on data availability)
+- Fair comparison: all indicators are handpicked comparative metrics that don't penalise small & poor countries
 - Overall champs: Solid performance across all categories
 - Rising stars: Strong improvements in the last years
     - Show countries large growth rates for renewables in the energy mix, 
@@ -31,50 +28,65 @@
     - countries with the lowest recycling rates & trash production
 - metadata for each country: North, middle, south america, number of inhabitants, location/ tag for map visualization
 
-Environmental Indicators:
-1. Carbon emissions
-- **CO2 emissions per capita**
-- Total greenhouse gas emissions
 
-2. Energy
-- **Renewable energy share in total energy mix**
-- Access to clean energy
+| Name                                      | Weight | Data Source ID | Possible Reliable Data Sources                  |
+|-------------------------------------------|--------|----------------|------------------------------------------------|
+| **Environmental Indicators**              | 0.5 |
+| (1) Emissions per capita                  ||[DS01](#ds01-world-bank-group) | IPCC, World Bank, National Statistics Offices   |
+| (2) Renewable energy share | 0.9    |[DS01](#ds01-world-bank-group) | IEA, REN21, World Bank                         |
+| (3) Deforestation rates/ emissions   ||[DS01](#ds01-world-bank-group)| FAO, Global Forest Watch, National Forestry Agencies |
+| (4) Water stress levels                       || [DS01](#ds01-world-bank-group)| WRI Aqueduct, FAO, UNEP                        |
+| (5) Waste equivalent emissions      || [DS01](#ds01-world-bank-group) | OECD, Eurostat, World Bank                     |
+| **Social Indicators**                     | 0.3 |
+| (6) Health expenditure             ||[DS01](#ds01-world-bank-group)| WHO, UN Population Division |
+| (7) Air pollution                       || [DS01](#ds01-world-bank-group) | WHO, AQI Databases, National Environmental Agencies |
+| (8) Education efficiency                       || [DS01](#ds01-world-bank-group)| UNESCO, UNICEF, World Bank                     |
+| **Economic Indicators**                   |0.2 |
+| (9) Carbon intensity (emissions per GDP)      ||[DS01](#ds01-world-bank-group) | IPCC, IEA, National Statistics Offices         |
+| (10) Research and development expenditure    || [DS01](#ds01-world-bank-group) | IEA, World Bank, UNIDO                         |
 
-3. Natural Resources
-- **Forest coverage and deforestation rates**
-- Water stress levels
-- Biodiversity indices
-- **Waste management and recycling rates**
-
-Social Indicators:
-1. Health & Wellbeing
-- **Life expectancy**
-- Access to healthcare
-- **Air quality indices**
-
-2. Education
-- Literacy rates
-- Years of schooling
-- **Access to education**
-
-Economic Indicators:
-- **Carbon intensity (emissions per GDP)**
-- **Energy efficiency (energy use per GDP)**
-- Green GDP
-- Circular economy metrics
-- Sustainable investment levels
 
 
 ## Datasources
 
 <!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
 
-### Datasource1: ExampleSource
-* Metadata URL: https://mobilithek.info/offers/-6901989592576801458
-* Data URL: https://raw.githubusercontent.com/od-ms/radverkehr-zaehlstellen/main/100035541/2019-01.csv
-* Data Type: CSV
+### DS01: WORLD BANK GROUP
+* Metadata URL: automatically created for each selected series
+* Data URL: https://databank.worldbank.org/source/world-development-indicators/
+* Data Type: XLSX, CSV, Tabbed TXT
 
-Short description of the DataSource.
+The WORLD BANK GROUP offers a really comprehensive composed dataset called *World Development Indicators* containing most of the listed indicators.The database of the WORLD BANK is composed of numerous publications, statistics and evaluations. It provides a flexible user interface to select the countries, indicators (series), time range and a comprehensive list of metadata attributes. After completing the selection, the data can be downloaded (CSV, XLSX, Tabbed TXT). The data is usually availably under the CC BY-4.X license.
+An FAQ contains more information regarding [licensing](https://datacatalog.worldbank.org/public-licenses#cc-by).
+
+**List of indicators**
+1. Carbon dioxide (CO2) emissions excluding LULUCF per capita (t CO2e/capita) / Total greenhouse gas emissions excluding LULUCF per capita (t CO2e/capita)
+2. Renewable energy consumption (% of total final energy consumption)
+3. Carbon dioxide (CO2) net fluxes from LULUCF - Deforestation (Mt CO2e)
+4. Level of water stress: freshwater withdrawal as a proportion of available freshwater resources(ER.H2O.FWST.ZS)
+5. Carbon dioxide (CO2) emissions from Waste (Mt CO2e) 
+6. Current health expenditure (% of GDP) / Current health expenditure per capita (current US$)
+7. Mortality rate attributed to household and ambient air pollution, age-standardized (per 100,000 population) / PM2.5 air pollution, population exposed to levels exceeding WHO guideline value (% of total)
+8. Literacy rate, adult total (% of people ages 15 and above)
+9. Carbon intensity of GDP (kg CO2e per 2021 PPP), Carbon intensity of GDP (kg CO2e per constant 2015 US$ of GDP)
+10. Research and development expenditure (% of GDP)
+
+### DS02: tbd
+* Metadata URL: 
+* Data URL: 
+* Data Type: 
+
+List of indicators
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+10.
 
 ## Work Packages
 
