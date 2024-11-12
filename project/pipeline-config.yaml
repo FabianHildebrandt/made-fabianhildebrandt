@@ -1,0 +1,83 @@
+# Version
+version: '1.0'
+debug: False
+
+# Country mappings for Americas and Caribbean regions
+countries:
+  Canada: CAN
+  Mexico: MEX
+  United States: USA
+  Belize: BLZ
+  Costa Rica: CRI
+  El Salvador: SLV
+  Guatemala: GTM
+  Honduras: HND
+  Nicaragua: NIC
+  Panama: PAN
+  Antigua and Barbuda: ATG
+  Bahamas: BHS
+  Barbados: BRB
+  Cuba: CUB
+  Dominica: DMA
+  Dominican Republic: DOM
+  Grenada: GRD
+  Haiti: HTI
+  Jamaica: JAM
+  Saint Kitts and Nevis: KNA
+  Saint Lucia: LCA
+  Saint Vincent and the Grenadines: VCT
+  Trinidad and Tobago: TTO
+  Argentina: ARG
+  Bolivia: BOL
+  Brazil: BRA
+  Chile: CHL
+  Colombia: COL
+  Ecuador: ECU
+  Guyana: GUY
+  Paraguay: PRY
+  Peru: PER
+  Suriname: SUR
+  Uruguay: URY
+  Venezuela: VEN
+  Aruba: ABW
+  Bermuda: BMU
+  Cayman Islands: CYM
+  Curacao: CUW
+  French Guiana: GUF
+  Martinique: MTQ
+  Puerto Rico: PRI
+  Sint Maarten: SXM
+  Turks and Caicos Islands: TCA
+  Virgin Islands (U.S.): VIR
+
+# world bank api information
+world_bank_api:
+  metadata_attributes:
+    - id
+    - IndicatorName
+    - Source
+    - License_Type
+    - License_URL
+    - Longdefinition
+
+# date range for data retrieval
+date_range:
+  start_year: 2000
+  end_year: 2024
+
+# SAC indicators and their World Bank Group id's
+indicators:
+  - EN.GHG.CO2.PC.CE.AR5  # CO2 emissions per capita
+  - EN.GHG.ALL.PC.CE.AR5  # Total GHG emissions per capita
+  - EG.FEC.RNEW.ZS  # Renewable energy consumption (% of total)
+  - EN.GHG.CO2.LU.DF.MT.CE.AR5  # CO2 net fluxes from LULUCF
+  - ER.H2O.FWST.ZS  # Level of water stress
+  - EN.GHG.CO2.WA.MT.CE.AR5  # CO2 emissions from waste
+  - SH.XPD.CHEX.GD.ZS  # Health expenditure (% of GDP)
+  - SH.XPD.CHEX.PC.CD  # Health expenditure per capita
+  - SH.STA.AIRP.P5  # Mortality rate from air pollution
+  - EN.ATM.PM25.MC.ZS  # PM2.5 exposure
+  - SE.ADT.LITR.ZS  # Adult literacy rate
+  - EN.GHG.CO2.RT.GDP.PP.KD  # Carbon intensity (PPP)
+  - EN.GHG.CO2.RT.GDP.KD  # Carbon intensity (GDP)
+  - GB.XPD.RSDV.GD.ZS  # R&D expenditure

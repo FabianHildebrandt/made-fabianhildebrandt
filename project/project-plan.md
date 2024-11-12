@@ -26,14 +26,13 @@
     - countries with the dirtiest electricity mix
     - countries with a high number of natural disasters
     - countries with the lowest recycling rates & trash production
-- metadata for each country: North, middle, south america, number of inhabitants, location/ tag for map visualization
-
+- The indicators are subject to **change**. The indicators are evaluated based on their data quality (year and country coverage etc.). The goal is to have current indicators, which are not outdated. The pipeline is configurable and generic. Indicators can be removed and added without big effort.
 
 | Name                                      | Weight | Data Source ID | Possible Reliable Data Sources                  |
 |-------------------------------------------|--------|----------------|------------------------------------------------|
 | **Environmental Indicators**              | 0.5 |
 | (1) Emissions per capita                  ||[DS01](#ds01-world-bank-group) | IPCC, World Bank, National Statistics Offices   |
-| (2) Renewable energy share | 0.9    |[DS01](#ds01-world-bank-group) | IEA, REN21, World Bank                         |
+| (2) Renewable energy share ||[DS01](#ds01-world-bank-group) | IEA, REN21, World Bank                         |
 | (3) Deforestation rates/ emissions   ||[DS01](#ds01-world-bank-group)| FAO, Global Forest Watch, National Forestry Agencies |
 | (4) Water stress levels                       || [DS01](#ds01-world-bank-group)| WRI Aqueduct, FAO, UNEP                        |
 | (5) Waste equivalent emissions      || [DS01](#ds01-world-bank-group) | OECD, Eurostat, World Bank                     |
@@ -54,22 +53,23 @@
 ### DS01: WORLD BANK GROUP
 * Metadata URL: automatically created for each selected series
 * Data URL: https://databank.worldbank.org/source/world-development-indicators/
-* Data Type: XLSX, CSV, Tabbed TXT
+* Data Type: XLSX, CSV, Tabbed TXT, Pandas DataFrame
 
-The WORLD BANK GROUP offers a really comprehensive composed dataset called *World Development Indicators* containing most of the listed indicators.The database of the WORLD BANK is composed of numerous publications, statistics and evaluations. It provides a flexible user interface to select the countries, indicators (series), time range and a comprehensive list of metadata attributes. After completing the selection, the data can be downloaded (CSV, XLSX, Tabbed TXT). The data is usually availably under the CC BY-4.X license.
-An FAQ contains more information regarding [licensing](https://datacatalog.worldbank.org/public-licenses#cc-by).
+The WORLD BANK GROUP offers a really comprehensive composed dataset called *World Development Indicators* containing most of the listed indicators.The database of the WORLD BANK is composed of numerous publications, statistics and evaluations. It provides a flexible user interface to select the countries, indicators (series), time range and a comprehensive list of metadata attributes. After completing the selection, the data can be downloaded (CSV, XLSX, Tabbed TXT). The data is usually availably under the CC BY-4.X license. Additionally, it offers an open API, which can be accessed using the open source library [wbgapi](https://pypi.org/project/wbgapi/) under the MIT License.
+An FAQ contains more information regarding [licensing](https://datacatalog.worldbank.org/public-licenses#cc-by) of the indicator data.
+
 
 **List of indicators**
-1. Carbon dioxide (CO2) emissions excluding LULUCF per capita (t CO2e/capita) / Total greenhouse gas emissions excluding LULUCF per capita (t CO2e/capita)
-2. Renewable energy consumption (% of total final energy consumption)
-3. Carbon dioxide (CO2) net fluxes from LULUCF - Deforestation (Mt CO2e)
-4. Level of water stress: freshwater withdrawal as a proportion of available freshwater resources(ER.H2O.FWST.ZS)
-5. Carbon dioxide (CO2) emissions from Waste (Mt CO2e) 
-6. Current health expenditure (% of GDP) / Current health expenditure per capita (current US$)
-7. Mortality rate attributed to household and ambient air pollution, age-standardized (per 100,000 population) / PM2.5 air pollution, population exposed to levels exceeding WHO guideline value (% of total)
-8. Literacy rate, adult total (% of people ages 15 and above)
-9. Carbon intensity of GDP (kg CO2e per 2021 PPP), Carbon intensity of GDP (kg CO2e per constant 2015 US$ of GDP)
-10. Research and development expenditure (% of GDP)
+1. Carbon dioxide (CO2) emissions excluding LULUCF per capita (t CO2e/capita) - EN.GHG.CO2.PC.CE.AR5 / Total greenhouse gas emissions excluding LULUCF per capita (t CO2e/capita) - EN.GHG.ALL.PC.CE.AR5
+2. Renewable energy consumption (% of total final energy consumption) - EG.FEC.RNEW.ZS
+3. Carbon dioxide (CO2) net fluxes from LULUCF - Deforestation (Mt CO2e) - EN.GHG.CO2.LU.DF.MT.CE.AR5
+4. Level of water stress: freshwater withdrawal as a proportion of available freshwater resources - ER.H2O.FWST.ZS
+5. Carbon dioxide (CO2) emissions from Waste (Mt CO2e) - EN.GHG.CO2.WA.MT.CE.AR5
+6. Current health expenditure (% of GDP) - SH.XPD.CHEX.GD.ZS / Current health expenditure per capita (current US$) - SH.XPD.CHEX.PC.CD
+7. Mortality rate attributed to household and ambient air pollution, age-standardized (per 100,000 population) - SH.STA.AIRP.P5 / PM2.5 air pollution, population exposed to levels exceeding WHO guideline value (% of total) - EN.ATM.PM25.MC.ZS
+8. Literacy rate, adult total (% of people ages 15 and above) - SE.ADT.LITR.ZS
+9. Carbon intensity of GDP (kg CO2e per 2021 PPP) - EN.GHG.CO2.RT.GDP.PP.KD , Carbon intensity of GDP (kg CO2e per constant 2015 US$ of GDP) - EN.GHG.CO2.RT.GDP.KD
+10. Research and development expenditure (% of GDP) - GB.XPD.RSDV.GD.ZS
 
 ### DS02: tbd
 * Metadata URL: 
