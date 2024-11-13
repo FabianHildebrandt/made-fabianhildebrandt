@@ -71,10 +71,12 @@ An FAQ contains more information regarding [licensing](https://datacatalog.world
 9. Carbon intensity of GDP (kg CO2e per 2021 PPP) - EN.GHG.CO2.RT.GDP.PP.KD , Carbon intensity of GDP (kg CO2e per constant 2015 US$ of GDP) - EN.GHG.CO2.RT.GDP.KD
 10. Research and development expenditure (% of GDP) - GB.XPD.RSDV.GD.ZS
 
-### DS02: tbd
-* Metadata URL: 
-* Data URL: 
-* Data Type: 
+### DS02: Data on CO2 and Greenhouse Gas Emissions by Our World in Data
+* Metadata URL: https://github.com/owid/co2-data/blob/master/owid-co2-codebook.csv 
+* Data URL: https://github.com/owid/co2-data/blob/master/owid-co2-data.csv 
+* Data Type: CSV (XlSX, JSON)
+
+*Our World in Data* (OWID) is a non-profit research initiative that makes knowledge accessible and understandable by providing datasets, reports and case studies. The datasets originate from various organizations (UN, WHO, World Bank etc.) and cover a wide range of topics. The datasets are publicly available under Creative Commons BY licenses. The usage of the data is allowed, as long as the source and authors are credited. OWID provides a [guideline](https://ourworldindata.org/faqs#citing-work-produced-by-third-parties-and-made-available-by-our-world-in-data) on how to cite the data. 
 
 List of indicators
 1.
