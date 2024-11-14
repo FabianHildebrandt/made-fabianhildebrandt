@@ -77,9 +77,11 @@ An FAQ contains more information regarding [licensing](https://datacatalog.world
 * Data Type: CSV (XlSX, JSON)
 
 *Our World in Data* (OWID) is a non-profit research initiative that makes knowledge accessible and understandable by providing datasets, reports and case studies. The datasets originate from various organizations (UN, WHO, World Bank etc.) and cover a wide range of topics. The datasets are publicly available under Creative Commons BY licenses. The usage of the data is allowed, as long as the source and authors are credited. OWID provides a [guideline](https://ourworldindata.org/faqs#citing-work-produced-by-third-parties-and-made-available-by-our-world-in-data) on how to cite the data. 
+Reference:
+- Hannah Ritchie, Pablo Rosado and Max Roser (2023) - “CO₂ and Greenhouse Gas Emissions” Published online at OurWorldinData.org. Retrieved from: 'https://ourworldindata.org/co2-and-greenhouse-gas-emissions' [Online Resource]
 
 List of indicators
-1.
+1. Numerous CO2 indicators -> the final indicators for the project report one will be selected based on the indicator data quality
 2.
 3.
 4.
