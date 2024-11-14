@@ -1,6 +1,6 @@
 # Version
 version: '1.0'
-debug: True
+debug: False
 
 # Country mappings for Americas and Caribbean regions
 countries:

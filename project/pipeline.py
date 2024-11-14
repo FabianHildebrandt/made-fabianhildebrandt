@@ -7,24 +7,6 @@ import requests
 from io import StringIO
 import sqlite3
 
-def read_pipeline_config(path : str = './pipeline-config.yaml') -> Dict:
-    """
-    Read out the pipeline configuration
-
-    Args:
-        path (str): Path to the config yaml file
-
-    """
-    print('\nReading configuration from the provided path...')
-    try: 
-        with open(path, "r", encoding='utf-8') as yamlfile:
-            config = yaml.load(yamlfile, Loader=yaml.FullLoader)
-        print("Successfully read yaml config file.")
-        return config
-    except Exception as e:
-        print(f"Error reading configuration from the path {path}: {str(e)}")
-        raise
-
 class apiClient:
     def __init__(self, config : dict):
         """
@@ -257,7 +239,8 @@ class WorldBankAPI(apiClient):
 
         print('\nCollecting the data for the configured indicators...')
 
-        try:    
+        try:
+            # request to the World Bank API V2 using wggapi library
             self._indicator_data_raw = wb.data.DataFrame(series=self.indicators, economy=self.country_name_lookup.keys(), time=range(self.start_year, self.end_year+1,1))
             print(f'Successfully collected the indicator data of {len(self.indicators)} indicators for {len(self.country_name_lookup.keys())} countries from {self.start_year} to {self.end_year}')
         except Exception as e:
@@ -307,8 +290,6 @@ class WorldBankAPI(apiClient):
         
         return self.indicator_data
     
-    
-
 class OurWorldInData(apiClient):
     """A client to access the dataset provided by the [*Our World in Data*](https://ourworldindata.org) research initiative"""
 
@@ -400,8 +381,11 @@ class OurWorldInData(apiClient):
 
         try:
             df = self._indicator_data_raw
+            # iso code is the country name
             columns_to_keep = self.indicators + ['year', 'iso_code']
+            # filter out unneccessary columns
             df = df.loc[:, columns_to_keep]
+            # rename iso_code -> country to have a common data strcuture 
             df = df.rename(columns={'iso_code':'country'})
             df = df[
                 (df['country'].isin(self.country_name_lookup.keys())) &
@@ -416,7 +400,6 @@ class OurWorldInData(apiClient):
                 value_name= 'value',
                 var_name='indicator'
                 )
-            
             self.indicator_data = self.check_and_clean(df, self.output_path)
 
             print(f'Successfully cleaned the indicator data.')
@@ -450,6 +433,23 @@ class OurWorldInData(apiClient):
             print(f"Error fetching data: {e}")
             return None
 
+def read_pipeline_config(path : str = './pipeline-config.yaml') -> Dict:
+    """
+    Read out the pipeline configuration
+
+    Args:
+        path (str): Path to the config yaml file
+
+    """
+    print('\nReading configuration from the provided path...')
+    try: 
+        with open(path, "r", encoding='utf-8') as yamlfile:
+            config = yaml.load(yamlfile, Loader=yaml.FullLoader)
+        print("Successfully read yaml config file.")
+        return config
+    except Exception as e:
+        print(f"Error reading configuration from the path {path}: {str(e)}")
+        raise
 
 if __name__ == "__main__":
     # Read out config 
