@@ -1,0 +1,100 @@
+pipeline WorldBankPipeline {
+    GraphsFileExtractor
+        -> GraphsXLSXInterpreter
+        -> GraphsSheetPicker
+        -> ColumnHeaderWriter
+        -> ColumnHeaderWriter2
+        -> GraphDataSelector
+        -> BondIssuancePicker
+        -> BondIssuanceLoader;
+
+    GraphDataSelector
+        -> GdpPicker
+        -> GdpLoader;     
+
+    block GraphsFileExtractor oftype LocalFileExtractor {
+        filePath : "data/Graphs-Chapter-5-02082022.xlsx";
+    }
+
+
+    // HTTP -> File
+    // block GraphsFileExtractor oftype HttpExtractor {
+    //     // Download the CSV data from the URL source 
+    //     url: "https://thedocs.worldbank.org/en/doc/7d852628d96b9411d43e5d36d5dff941-0050062022/original/Graphs-Chapter-5-02082022.xlsx";
+    // }
+
+    // File -> Workbook
+    block GraphsXLSXInterpreter oftype XLSXInterpreter {}
+
+    // Workbook -> Sheet 
+    block GraphsSheetPicker oftype SheetPicker {
+        sheetName : "Figure S5.1.2";
+    }
+
+    // Sheet -> Sheet (Renaming the first column header)
+    block ColumnHeaderWriter oftype CellWriter {
+        at : cell P2;
+        write : ["Country Code"];
+    }
+    // Sheet -> Sheet (Renaming the third and fourth column headers)
+    block ColumnHeaderWriter2 oftype CellWriter {
+        at : range R2:S2;
+        write : ["GDP per Capita", "Bond Issuance Share"];
+    }
+
+    // Sheet -> Sheet (Extract the region of interest (data range))
+    block GraphDataSelector oftype CellRangeSelector {
+        select : range P2:S45;
+    }
+
+    // Sheet -> Table (Pick only the two columns Bond Issuance and Country Code for first Table)
+    block BondIssuancePicker oftype TableInterpreter {
+        header: true;
+        columns : [
+            "Country Code" oftype CountryCodeAlpha3,
+            "Bond Issuance Share" oftype BondIssuanceShare
+        ];
+    }
+
+    // Sheet -> Table (Pick only the two columns GDP per Capita and Country Code for second Table)
+    block GdpPicker oftype TableInterpreter {
+        header: true;
+        columns : [
+            "Country Code" oftype CountryCodeAlpha3,
+            "GDP per Capita" oftype PositiveDecimal
+        ];
+    }
+
+    // Table 1 -> SQLite
+    block BondIssuanceLoader oftype SQLiteLoader {
+        table: "bondIssuance";
+        file: "./country-stats.sqlite";
+    }
+
+    // Table 2 -> SQLite
+    block GdpLoader oftype SQLiteLoader {
+        table: "gdpPerCapita";
+        file: "./country-stats.sqlite";
+    }
+
+    valuetype BondIssuanceShare oftype decimal {
+        constraints : [
+            ShareConstraint
+        ];
+    }
+    constraint ShareConstraint oftype RangeConstraint {
+        lowerBound: 0;
+        upperBound: 1;
+    }
+
+    valuetype PositiveDecimal oftype decimal {
+        constraints : [
+            PositiveConstraint
+        ];
+    }
+
+    constraint PositiveConstraint oftype RangeConstraint {
+        lowerBound: 0;
+    }
+
+}
