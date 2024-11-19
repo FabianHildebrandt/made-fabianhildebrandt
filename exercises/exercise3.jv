@@ -12,16 +12,16 @@ pipeline WorldBankPipeline {
         -> GdpPicker
         -> GdpLoader;     
 
-    block GraphsFileExtractor oftype LocalFileExtractor {
-        filePath : "data/Graphs-Chapter-5-02082022.xlsx";
-    }
+    // block GraphsFileExtractor oftype LocalFileExtractor {
+    //     filePath : "data/Graphs-Chapter-5-02082022.xlsx";
+    // }
 
 
     // HTTP -> File
-    // block GraphsFileExtractor oftype HttpExtractor {
-    //     // Download the CSV data from the URL source 
-    //     url: "https://thedocs.worldbank.org/en/doc/7d852628d96b9411d43e5d36d5dff941-0050062022/original/Graphs-Chapter-5-02082022.xlsx";
-    // }
+    block GraphsFileExtractor oftype HttpExtractor {
+        // Download the CSV data from the URL source 
+        url: "https://thedocs.worldbank.org/en/doc/7d852628d96b9411d43e5d36d5dff941-0050062022/original/Graphs-Chapter-5-02082022.xlsx";
+    }
 
     // File -> Workbook
     block GraphsXLSXInterpreter oftype XLSXInterpreter {}
