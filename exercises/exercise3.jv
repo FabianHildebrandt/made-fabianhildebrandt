@@ -92,9 +92,10 @@ pipeline WorldBankPipeline {
             PositiveConstraint
         ];
     }
-
+    // assumption: 0 is not a positive number by definition
     constraint PositiveConstraint oftype RangeConstraint {
         lowerBound: 0;
+        lowerBoundInclusive: false;
     }
 
 }
