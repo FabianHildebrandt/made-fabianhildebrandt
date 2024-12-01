@@ -11,6 +11,11 @@ pipeline BatteryTemperaturePipeline {
         -> BatteryTemperatureConverter
         -> TemperatureLoader;
     
+    // Local validation testing
+    // block TemperatureFileExtractor oftype LocalFileExtractor {
+    //     filePath : "data/mowesta-dataset-20221107/data.csv";
+    // }
+
     // HTTP Access -> File
     block TemperatureZipExtractor oftype HttpExtractor {
         url: "https://www.mowesta.com/data/measure/mowesta-dataset-20221107.zip";
@@ -49,10 +54,10 @@ pipeline BatteryTemperaturePipeline {
     block TemperatureTableInterpreter oftype TableInterpreter {
         header : true;
         columns : [
-            "id" oftype integer, 
+            "id" oftype DeviceId, 
             "producer" oftype text, 
             "model" oftype text, 
-            "month" oftype integer, 
+            "month" oftype Month, 
             "temperature" oftype decimal, 
             "battery_temperature" oftype decimal
         ];
@@ -78,9 +83,34 @@ pipeline BatteryTemperaturePipeline {
         file : "./temperatures.sqlite";
     }
 
+    // Conversion between °C to °F
     transform CelsiusToFahrenheit {
         from tempCelsius oftype decimal;
         to tempFahrenheit oftype decimal;
         tempFahrenheit: (tempCelsius * 9/5) + 32;
     }   
+
+    // Device ID must be larger than 0
+    valuetype DeviceId oftype integer {
+        constraints : [
+            PositiveInteger
+        ];
+    }
+
+    constraint PositiveInteger oftype RangeConstraint {
+        lowerBound: 0;
+        lowerBoundInclusive : false; 
+    }
+
+    // Month is an integer between 0 and 12
+    valuetype Month oftype integer {
+        constraints : [
+            MonthConstraint
+        ];
+    }
+
+    constraint MonthConstraint oftype RangeConstraint {
+        lowerBound : 0;
+        upperBound : 12; 
+    }
 }
