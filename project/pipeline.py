@@ -32,6 +32,10 @@ class apiClient:
                     os.makedirs('../data/pipeline_debug')
             # Create reverse look up table
             self.country_name_lookup = {v: k for k, v in self.countries.items()}
+
+            if self.start_year == self.end_year:
+                raise ValueError('Please make sure to select a time range and not a single year.')
+
         except Exception as e:
             raise
 
@@ -260,6 +264,22 @@ class WorldBankAPI(apiClient):
 
         try:
             df = self._indicator_data_raw
+
+            # special case: if only one country is selected/ one indicator/ one year, the returned DataFrame misses 'economy' and 'series' as double index
+            if not isinstance(self._indicator_data_raw.index, pd.MultiIndex):
+                # Reset the index first (just to be sure)
+                df = self._indicator_data_raw.reset_index()
+                
+                # check for the special case that only one indicator/ one country is fetched
+                if len(self.indicators) == 1:
+                    # Add the indicator name as a column
+                    df['series'] = self.indicators[0]
+                
+                if len(self.country_name_lookup.keys()) == 1:
+                    # Add the economy name as a column
+                    economy_name = list(self.country_name_lookup.keys())[0]
+                    df['economy'] = economy_name
+
             if isinstance(df.index, pd.MultiIndex):
                 df = df.reset_index()  
             else:
@@ -453,7 +473,7 @@ def read_pipeline_config(path : str = './pipeline-config.yaml') -> Dict:
 
 if __name__ == "__main__":
     # Read out config 
-    pipeline_config = read_pipeline_config('./pipeline-config.yaml')
+    pipeline_config = read_pipeline_config('./pipeline-test-config.yaml')
     # Initialize clients with config and run the pipelines
     wbclient = WorldBankAPI(pipeline_config)
     wbclient.run_pipeline()
