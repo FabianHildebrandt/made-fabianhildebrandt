@@ -2,6 +2,8 @@
 version: '1.0'
 debug: False
 
+# simulate update to trigger workflow
+
 # Country mappings for Americas and Caribbean regions
 countries:
   Canada: CAN
