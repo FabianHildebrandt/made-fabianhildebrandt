@@ -1,3 +1,3 @@
 #!/bin/bash
-pip install pandas openpyxl wbgapi pyyaml requests pytest
+pip install -r requirements.txt
 pytest ./tests.py

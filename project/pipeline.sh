@@ -1,3 +1,3 @@
 #!/bin/bash
-pip install pandas openpyxl wbgapi pyyaml requests
+pip install -r requirements.txt
 python3 ./pipeline.py
