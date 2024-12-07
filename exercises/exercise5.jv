@@ -6,6 +6,16 @@ pipeline BusStopsPipeline {
         -> StopsTableInterpreter
         -> StopsLoader;
 
+    // Local validation testing
+    // StopsFileExtractor
+    //     -> StopsTextFileInterpreter
+    //     -> StopsCSVInterpreter
+    //     -> StopsTableInterpreter
+    //     -> StopsLoader;
+    // block StopsFileExtractor oftype LocalFileExtractor {
+    //     filePath : "data/GTFS/stops.txt";
+    // }
+
     // Composite Block Type: Combines HTTP Extractor and ArchiveInterpreter
     // HTTP Access -> Filesystem
     block StopsExtractor oftype GTFSExtractor {
@@ -28,11 +38,9 @@ pipeline BusStopsPipeline {
         columns : [
             "stop_id" oftype integer,
             "stop_name" oftype text,
-            "stop_desc" oftype text,
             "stop_lat" oftype GTFSLatitudeLimited,
             "stop_lon" oftype GTFSLongitudeLimited,
-            "zone_id" oftype ZonesOfInterest,
-            "stop_url" oftype text
+            "zone_id" oftype ZonesOfInterest
         ];
     }  
     // Table -> SQlite
@@ -40,7 +48,7 @@ pipeline BusStopsPipeline {
         table : "stops";
         file : "./gtfs.sqlite";
     }
-    
+
     // only keep stops of a certain zone
     valuetype ZonesOfInterest oftype integer {
         constraints : [ZonesKeepList];
@@ -52,7 +60,7 @@ pipeline BusStopsPipeline {
     valuetype GTFSLongitudeLimited oftype decimal {
         constraints : [LongitudeLimited];
     }
-    // only keep stops with the id '1925'
+    // only keep stops with the zone id 1925
     constraint ZonesKeepList on decimal: value == 1925;
     constraint LatitudeLimited on decimal: value >= -90 and value <= 90;
     constraint LongitudeLimited on decimal: value >= -90 and value <= 90;
