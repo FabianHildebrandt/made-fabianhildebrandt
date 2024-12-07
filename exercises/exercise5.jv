@@ -1,0 +1,59 @@
+pipeline BusStopsPipeline {
+    StopsExtractor
+        -> StopsFilePicker
+        -> StopsTextFileInterpreter
+        -> StopsCSVInterpreter
+        -> StopsTableInterpreter
+        -> StopsLoader;
+
+    // Composite Block Type: Combines HTTP Extractor and ArchiveInterpreter
+    // HTTP Access -> Filesystem
+    block StopsExtractor oftype GTFSExtractor {
+        url : "https://gtfs.rhoenenergie-bus.de/GTFS.zip";
+    }
+
+    // Filesystem -> File
+    block StopsFilePicker oftype FilePicker {
+        path: "/stops.txt";
+    }
+    // File -> TextFile
+    block StopsTextFileInterpreter oftype TextFileInterpreter {}
+    // TextFile -> Sheet
+    block StopsCSVInterpreter oftype CSVInterpreter {
+        enclosing : '"';
+    }
+    // Sheet -> Table
+    block StopsTableInterpreter oftype TableInterpreter {
+        header : true;
+        columns : [
+            "stop_id" oftype integer,
+            "stop_name" oftype text,
+            "stop_desc" oftype text,
+            "stop_lat" oftype GTFSLatitudeLimited,
+            "stop_lon" oftype GTFSLongitudeLimited,
+            "zone_id" oftype ZonesOfInterest,
+            "stop_url" oftype text
+        ];
+    }  
+    // Table -> SQlite
+    block StopsLoader oftype SQLiteLoader {
+        table : "stops";
+        file : "./gtfs.sqlite";
+    }
+    
+    // only keep stops of a certain zone
+    valuetype ZonesOfInterest oftype integer {
+        constraints : [ZonesKeepList];
+    }
+    // only keep coordinates from -90° to +90° longitude/ latitude
+    valuetype GTFSLatitudeLimited oftype decimal {
+        constraints : [LatitudeLimited];
+    }
+    valuetype GTFSLongitudeLimited oftype decimal {
+        constraints : [LongitudeLimited];
+    }
+    // only keep stops with the id '1925'
+    constraint ZonesKeepList on decimal: value == 1925;
+    constraint LatitudeLimited on decimal: value >= -90 and value <= 90;
+    constraint LongitudeLimited on decimal: value >= -90 and value <= 90;
+}
