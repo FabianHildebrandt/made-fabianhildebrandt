@@ -62,7 +62,7 @@ world_bank_api:
     - License_URL
     - Longdefinition
     - Unitofmeasure
-  # SAC indicators and their World Bank Group id's
+  # SCA indicators and their World Bank Group id's
   indicators:
     # 1. Emissions per capita
     - EN.GHG.CO2.PC.CE.AR5 # Carbon dioxide (CO2) emissions excluding LULUCF per capita (t CO2e/capita)
@@ -253,7 +253,7 @@ owid_api:
 
     # 12. Natural Resource Depletion
 
-sac:
+sca:
   # Datasource 1: World Bank Open Data
   worldbank:
     # 1. Emissions per capita

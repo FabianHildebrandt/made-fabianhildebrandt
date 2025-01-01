@@ -157,13 +157,10 @@ def clean_gdf(gdf : gpd.GeoDataFrame, config : dict) -> gpd.GeoDataFrame:
 
     try:
         # Drop all columns but geometry, NAME, CONTINENT, WB_A3
-        gdf = gdf[['NAME', 'CONTINENT', 'WB_A3' ,'geometry']]
+        gdf = gdf[['NAME', 'WB_A3' ,'geometry']]
 
         # rename WB_A3 column to country
         gdf = gdf.rename(columns={'WB_A3':'country'})
-
-        # Drop all countries that don't belong to North/ South America
-        gdf = gdf[gdf['CONTINENT'].isin(['North America', 'South America'])]
 
         # Define the country list to filter within the Americas
         country_list = list(config['countries'].values())
@@ -171,7 +168,6 @@ def clean_gdf(gdf : gpd.GeoDataFrame, config : dict) -> gpd.GeoDataFrame:
         # Filter the Americas dataset for the countries in the list
         gdf = gdf[gdf["country"].isin(country_list)]
 
-        gdf.drop(columns='CONTINENT', inplace=True)
         gdf.reset_index(drop=True, inplace=True)
         gdf.set_index('country', inplace=True)
 
@@ -302,13 +298,13 @@ if __name__ == "__main__":
     countries = tuple(config['countries'].values())
 
     # Extract rankings
-    rankings = config['sac']
+    rankings = config['sca']
 
     # Extract the year range for the ranking
     year_range = (config['date_range']['start_year'], config['date_range']['end_year'])
 
     # Extract the datasources used for the ranking
-    datasources = config['sac']
+    datasources = config['sca']
 
     overall_ranking = []
     rising_stars_ranking = []
@@ -318,11 +314,11 @@ if __name__ == "__main__":
         # Create the database path for the current datasource
         db_path = f'../data/{datasource}.sqlite'
 
-        for indicator in config['sac'][datasource]:
+        for indicator in config['sca'][datasource]:
             # Read the full indicator description from the config
-            indicator_description = config['sac'][datasource][indicator]['description']
+            indicator_description = config['sca'][datasource][indicator]['description']
             # Check whether the indicator is ranked ascending/ descending 
-            indicator_high_rank_last = config['sac'][datasource][indicator]['high_rank_last']
+            indicator_high_rank_last = config['sca'][datasource][indicator]['high_rank_last']
 
             # Query the indicator data and calculate the rate of change
             indicator_data = query_indicator_data(db_path, indicator, countries, year_range)
