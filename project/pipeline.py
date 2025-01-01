@@ -453,7 +453,7 @@ class OurWorldInData(apiClient):
             print(f"Error fetching data: {e}")
             return None
 
-def read_pipeline_config(path : str = './pipeline-config.yaml') -> Dict:
+def read_config(path : str = './config.yaml') -> Dict:
     """
     Read out the pipeline configuration
 
@@ -473,7 +473,7 @@ def read_pipeline_config(path : str = './pipeline-config.yaml') -> Dict:
 
 if __name__ == "__main__":
     # Read out config 
-    pipeline_config = read_pipeline_config('./pipeline-config.yaml')
+    pipeline_config = read_config('./config.yaml')
     # Initialize clients with config and run the pipelines
     wbclient = WorldBankAPI(pipeline_config)
     wbclient.run_pipeline()

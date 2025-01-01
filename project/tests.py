@@ -5,7 +5,7 @@ import pandas as pd
 from typing import Type
 
 from pipeline import (
-    read_pipeline_config, 
+    read_config, 
     WorldBankAPI, 
     OurWorldInData
 )
@@ -20,7 +20,7 @@ class TestAPIClient:
     def pipeline_config(self):
         """Fixture to load test pipeline config"""
         config_path = './pipeline-test-config.yaml'
-        return read_pipeline_config(config_path)
+        return read_config(config_path)
 
     # test will twice: once for the WorldBankAPI client and once for the OWID client
     @pytest.mark.parametrize("client_class", [WorldBankAPI, OurWorldInData])

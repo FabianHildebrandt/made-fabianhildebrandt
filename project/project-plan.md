@@ -27,24 +27,44 @@
     - countries with a high number of natural disasters
     - countries with the lowest recycling rates & trash production
 - The indicators are subject to **change**. The indicators are evaluated based on their data quality (year and country coverage etc.). The goal is to have current indicators, which are not outdated. The pipeline is configurable and generic. Indicators can be removed and added without big effort.
+- sources for indicators: [Sovereign ESG Data Framework](https://esgdata.worldbank.org/data/framework?lang=en)
 
-| Name                                      | Weight | Data Source ID | Possible Reliable Data Sources                  |
-|-------------------------------------------|--------|----------------|------------------------------------------------|
-| **Environmental Indicators**              | 0.5 |
-| (1) Emissions per capita                  ||[DS01](#ds01-world-bank-group) | IPCC, World Bank, National Statistics Offices   |
-| (2) Renewable energy share ||[DS01](#ds01-world-bank-group) | IEA, REN21, World Bank                         |
-| (3) Deforestation rates/ emissions   ||[DS01](#ds01-world-bank-group)| FAO, Global Forest Watch, National Forestry Agencies |
-| (4) Water stress levels                       || [DS01](#ds01-world-bank-group)| WRI Aqueduct, FAO, UNEP                        |
-| (5) Waste equivalent emissions      || [DS01](#ds01-world-bank-group) | OECD, Eurostat, World Bank                     |
-| **Social Indicators**                     | 0.3 |
-| (6) Health expenditure             ||[DS01](#ds01-world-bank-group)| WHO, UN Population Division |
-| (7) Air pollution                       || [DS01](#ds01-world-bank-group) | WHO, AQI Databases, National Environmental Agencies |
-| (8) Education efficiency                       || [DS01](#ds01-world-bank-group)| UNESCO, UNICEF, World Bank                     |
-| **Economic Indicators**                   |0.2 |
-| (9) Carbon intensity (emissions per GDP)      ||[DS01](#ds01-world-bank-group) | IPCC, IEA, National Statistics Offices         |
-| (10) Research and development expenditure    || [DS01](#ds01-world-bank-group) | IEA, World Bank, UNIDO                         |
+| Name                                      | Data Source ID | Possible Reliable Data Sources                  |
+|-------------------------------------------|----------------|------------------------------------------------|
+| **Environmental Indicators**              |
+| (1) Emissions per capita                  |[DS01](#ds01-world-bank-group), [DS02](#ds02-data-on-co2-and-greenhouse-gas-emissions-by-our-world-in-data) | IPCC, World Bank, National Statistics Offices   |
+| (2) Renewable energy share |[DS01](#ds01-world-bank-group), [DS02](#ds02-data-on-co2-and-greenhouse-gas-emissions-by-our-world-in-data) | IEA, REN21, World Bank                         |
+| (3) Deforestation rates/ emissions   |[DS01](#ds01-world-bank-group), [DS02](#ds02-data-on-co2-and-greenhouse-gas-emissions-by-our-world-in-data)| FAO, Global Forest Watch, National Forestry Agencies |
+| (4) Water stress levels                       | [DS01](#ds01-world-bank-group)| WRI Aqueduct, FAO, UNEP                        |
+| (5) Waste equivalent emissions      | [DS01](#ds01-world-bank-group) | OECD, Eurostat, World Bank                     |
+| **Social Indicators**                     |
+| (6) Health expenditure             |[DS01](#ds01-world-bank-group)| WHO, UN Population Division |
+| (7) Air pollution                       | [DS01](#ds01-world-bank-group), [DS02](#ds02-data-on-co2-and-greenhouse-gas-emissions-by-our-world-in-data) | WHO, AQI Databases, National Environmental Agencies |
+| (8) Education efficiency                       | [DS01](#ds01-world-bank-group)| UNESCO, UNICEF, World Bank                     |
+| **Economic Indicators**                   |
+| (9) Carbon intensity (emissions per GDP)      |[DS01](#ds01-world-bank-group), [DS02](#ds02-data-on-co2-and-greenhouse-gas-emissions-by-our-world-in-data) | IPCC, IEA, National Statistics Offices         |
+| (10) Green tech, Investments, R&D    | [DS01](#ds01-world-bank-group) | IEA, World Bank, UNIDO                         |
+| (11) Climate Risk, Droughts, Floods, extreme temperatures  |[DS01](#ds01-world-bank-group) | |
+| (12) Natural Resource Depletion    | [DS01](#ds01-world-bank-group) | |
+
+### How to calculate the latecomers ranking
+- for the latecomers ranking, the position in the rising star and overall ranking are averaged and then set into comparison with the climate risks / costs
+- high costs/ a high risk for droughts, floods etc. should result in a large urge for stricter sustainbality targets
+- A low average Rising Star & Overall Ranking indicates (e. 1st, 2nd, 3rd) very good performance and a high ranking indicates bad performance (43rd, 42nd, 41st)
+- Climate Costs: High ranking = High risks (43rd, 42nd, 41st), Low ranking = Low risks (1st, 2nd, 3rd)
+- Challenge: The indicators for climate risks are barely reported or are only reported for the whole world -> 
+that's why, it's hard to implement a comparative metric in that domain
+- second idea: depletion of natural resources (how many percent of the country's resources have been used up)
+- Natural resource depletion is the sum of net forest depletion, energy depletion, and mineral depletion. -> creates a comprehensive image
 
 
+**List of indicators for the latecomers ranking**
+ 
+
+1. Normalize the overall, rising stars and latecomers ranking (max normalization) to get a ranking from 0 to 1
+2. Calculate a weighted average of the rankings (alpha as the weighting factor)
+    - alpha determines how important the climate cost ranking is
+3. Create a ranking from the scores
 
 ## Datasources
 
@@ -60,16 +80,40 @@ An FAQ contains more information regarding [licensing](https://datacatalog.world
 
 
 **List of indicators**
-1. Carbon dioxide (CO2) emissions excluding LULUCF per capita (t CO2e/capita) - EN.GHG.CO2.PC.CE.AR5 / Total greenhouse gas emissions excluding LULUCF per capita (t CO2e/capita) - EN.GHG.ALL.PC.CE.AR5
-2. Renewable energy consumption (% of total final energy consumption) - EG.FEC.RNEW.ZS
-3. Carbon dioxide (CO2) net fluxes from LULUCF - Deforestation (Mt CO2e) - EN.GHG.CO2.LU.DF.MT.CE.AR5
-4. Level of water stress: freshwater withdrawal as a proportion of available freshwater resources - ER.H2O.FWST.ZS
-5. Carbon dioxide (CO2) emissions from Waste (Mt CO2e) - EN.GHG.CO2.WA.MT.CE.AR5
-6. Current health expenditure (% of GDP) - SH.XPD.CHEX.GD.ZS / Current health expenditure per capita (current US$) - SH.XPD.CHEX.PC.CD
-7. Mortality rate attributed to household and ambient air pollution, age-standardized (per 100,000 population) - SH.STA.AIRP.P5 / PM2.5 air pollution, population exposed to levels exceeding WHO guideline value (% of total) - EN.ATM.PM25.MC.ZS
-8. Literacy rate, adult total (% of people ages 15 and above) - SE.ADT.LITR.ZS
-9. Carbon intensity of GDP (kg CO2e per 2021 PPP) - EN.GHG.CO2.RT.GDP.PP.KD , Carbon intensity of GDP (kg CO2e per constant 2015 US$ of GDP) - EN.GHG.CO2.RT.GDP.KD
-10. Research and development expenditure (% of GDP) - GB.XPD.RSDV.GD.ZS
+1. Emissions per capita:
+    - Carbon dioxide (CO2) emissions excluding LULUCF per capita (t CO2e/capita) - EN.GHG.CO2.PC.CE.AR5
+    - **Total greenhouse gas emissions excluding LULUCF per capita (t CO2e/capita) - EN.GHG.ALL.PC.CE.AR5**
+2. Renewable energy share:
+    - **Renewable energy consumption (% of total final energy consumption) - EG.FEC.RNEW.ZS**
+3. Deforestation rates/emissions:
+    - Carbon dioxide (CO2) net fluxes from LULUCF - Deforestation (Mt CO2e) - EN.GHG.CO2.LU.DF.MT.CE.AR5
+4. Water stress levels:
+    - **Level of water stress: freshwater withdrawal as a proportion of available freshwater resources - ER.H2O.FWST.ZS**
+5. Waste equivalent emissions:
+    - **Carbon dioxide (CO2) emissions from Waste (Mt CO2e) - EN.GHG.CO2.WA.MT.CE.AR5**
+6. Health expenditure:
+    - Current health expenditure (% of GDP) - SH.XPD.CHEX.GD.ZS
+    - **Current health expenditure per capita (current US$) - SH.XPD.CHEX.PC.CD**
+7. Air pollution:
+    - Mortality rate attributed to household and ambient air pollution, age-standardized (per 100,000 population) - SH.STA.AIRP.P5
+    - PM2.5 air pollution, population exposed to levels exceeding WHO guideline value (% of total) - EN.ATM.PM25.MC.ZS
+    - **PM2.5 air pollution mean annual exposure (micrograms per cubic meter) - EN.ATM.PM25.MC.M3**
+8. Education efficiency:
+    - Literacy rate, adult total (% of people ages 15 and above) - SE.ADT.LITR.ZS
+    - Government expenditure on education, total (% of government expenditure) - SE.XPD.TOTL.GB.ZS
+    - **School enrollment, primary (% gross) - SE.PRM.ENRR**
+9. Carbon intensity (emissions per GDP):
+    - Carbon intensity of GDP (kg CO2e per 2021 PPP) - EN.GHG.CO2.RT.GDP.PP.KD
+    - **Carbon intensity of GDP (kg CO2e per constant 2015 US$ of GDP) - EN.GHG.CO2.RT.GDP.KD**
+10. Green tech, Investments, R&D:
+    - Research and development expenditure (% of GDP) - GB.XPD.RSDV.GD.ZS
+    - Patent applications, residents - IP.PAT.RESD
+    - **GDP growth (annual %) - NY.GDP.MKTP.KD.ZG**
+11. Climate Risk, Droughts, Floods, extreme temperatures
+    - Disaster risk reduction progress score (1-5 scale), 5 best - EN.CLC.DRSK.XQ
+    - Droughts, floods, extreme temperatures (% of population, average 1990-2009) - EN.CLC.MDAT.ZS 
+12. Natural Resource Depletion
+    - Adjusted savings: natural resources depletion (% of GNI) - NY.ADJ.DRES.GN.ZS  
 
 ### DS02: Data on CO2 and Greenhouse Gas Emissions by Our World in Data
 * Metadata URL: https://github.com/owid/co2-data/blob/master/owid-co2-codebook.csv 
@@ -80,17 +124,54 @@ An FAQ contains more information regarding [licensing](https://datacatalog.world
 Reference:
 - Hannah Ritchie, Pablo Rosado and Max Roser (2023) - “CO₂ and Greenhouse Gas Emissions” Published online at OurWorldinData.org. Retrieved from: 'https://ourworldindata.org/co2-and-greenhouse-gas-emissions' [Online Resource]
 
-List of indicators
-1. Numerous CO2 indicators -> the final indicators for the project report one will be selected based on the indicator data quality
-2.
-3.
-4.
-5.
-6.
-7.
-8.
-9.
-10.
+**List of indicators**
+1. Emissions per capita
+    - cement_co2_per_capita 
+    - co2_including_luc_per_capita  
+    - co2_per_capita
+    - coal_co2_per_capita  
+    - consumption_co2_per_capita  
+    - flaring_co2_per_capita  
+    - gas_co2_per_capita  
+    - ghg_excluding_lucf_per_capita  
+    - ghg_per_capita  
+    - methane_per_capita  
+    - nitrous_oxide_per_capita  
+    - oil_co2_per_capita 
+    - other_co2_per_capita  
+2. Renewable energy share
+    - primary_energy_consumption  
+    - energy_per_capita  
+3. Deforestation rates/emissions
+    - cumulative_luc_co2  
+    - land_use_change_co2
+    - **land_use_change_co2_per_capita**  
+    - share_global_luc_co2  
+    - share_global_cumulative_luc_co2  
+4. Water stress levels
+    - 
+5. Waste equivalent emissions
+    -   
+6. Health expenditure
+    -  
+7. Air pollution
+    - methane  
+    - nitrous_oxide  
+    - temperature_change_from_ch4  
+    - temperature_change_from_n2o  
+8. Education efficiency
+    -  
+9. Carbon intensity (emissions per GDP)
+    - co2_including_luc_per_gdp  
+    - co2_per_gdp  
+    - consumption_co2_per_gdp  
+    - energy_per_gdp  
+10. Green tech, Investments, R&D
+    -   
+11. Climate Risk, Droughts, Floods, extreme temperatures
+    -   
+12. Natural Resource Depletion
+    - 
 
 ## Work Packages
 
@@ -104,3 +185,10 @@ List of indicators
 7. Continuous Integration [#7](https://github.com/FabianHildebrandt/made-fabianhildebrandt/issues/7)
 8. Data analysis [#8](https://github.com/FabianHildebrandt/made-fabianhildebrandt/issues/8)
 9. Project Report [#9](https://github.com/FabianHildebrandt/made-fabianhildebrandt/issues/9)
+
+## Notes
+- ASCOR framework for economic indicators 
+- NGFS for open data 
+- Investments in green/ sustainable technologies
+- Investments in clean energy
+- Aqueduct for water stress levels

@@ -1,0 +1,312 @@
+# Version
+version: '1.0'
+debug: True
+
+# Country mappings for Americas and Caribbean regions
+countries:
+  Canada: CAN
+  Mexico: MEX
+  United States: USA
+  Belize: BLZ
+  Costa Rica: CRI
+  El Salvador: SLV
+  Guatemala: GTM
+  Honduras: HND
+  Nicaragua: NIC
+  Panama: PAN
+  Antigua and Barbuda: ATG
+  Bahamas: BHS
+  Barbados: BRB
+  Cuba: CUB
+  Dominica: DMA
+  Dominican Republic: DOM
+  Grenada: GRD
+  Haiti: HTI
+  Jamaica: JAM
+  Saint Kitts and Nevis: KNA
+  Saint Lucia: LCA
+  Saint Vincent and the Grenadines: VCT
+  Trinidad and Tobago: TTO
+  Argentina: ARG
+  Bolivia: BOL
+  Brazil: BRA
+  Chile: CHL
+  Colombia: COL
+  Ecuador: ECU
+  Guyana: GUY
+  Paraguay: PRY
+  Peru: PER
+  Suriname: SUR
+  Uruguay: URY
+  Venezuela: VEN
+  Aruba: ABW
+  Bermuda: BMU
+  Cayman Islands: CYM
+  Curacao: CUW
+  # excluded French Guiana and Martinique as they belong to France
+  # French Guiana: GUF
+  # Martinique: MTQ
+  Puerto Rico: PRI
+  Saint Maarten: SXM
+  Turks and Caicos Islands: TCA
+  Virgin Islands (U.S.): VIR
+
+# world bank api information
+world_bank_api:
+  output_path: worldbank
+  metadata_attributes:
+    - id
+    - IndicatorName
+    - Source
+    - License_Type
+    - License_URL
+    - Longdefinition
+    - Unitofmeasure
+  # SAC indicators and their World Bank Group id's
+  indicators:
+    # 1. Emissions per capita
+    - EN.GHG.CO2.PC.CE.AR5 # Carbon dioxide (CO2) emissions excluding LULUCF per capita (t CO2e/capita)
+    - EN.GHG.ALL.PC.CE.AR5 # Total greenhouse gas emissions excluding LULUCF per capita (t CO2e/capita)
+
+    # 2. Renewable energy share
+    - EG.FEC.RNEW.ZS # Renewable energy consumption (% of total final energy consumption)
+
+    # 3. Deforestation rates/emissions
+    - EN.GHG.CO2.LU.DF.MT.CE.AR5 # Carbon dioxide (CO2) net fluxes from LULUCF - Deforestation (Mt CO2e)
+
+    # 4. Water stress levels
+    - ER.H2O.FWST.ZS # Level of water stress: freshwater withdrawal as a proportion of available freshwater resources
+
+    # 5. Waste equivalent emissions
+    - EN.GHG.CO2.WA.MT.CE.AR5 # Carbon dioxide (CO2) emissions from Waste (Mt CO2e)
+
+    # 6. Health expenditure
+    - SH.XPD.CHEX.GD.ZS # Current health expenditure (% of GDP)
+    - SH.XPD.CHEX.PC.CD # Current health expenditure per capita (current US$)
+
+    # 7. Air pollution
+    - SH.STA.AIRP.P5 # Mortality rate attributed to household and ambient air pollution, age-standardized (per 100,000 population)
+    - EN.ATM.PM25.MC.ZS # PM2.5 air pollution, population exposed to levels exceeding WHO guideline value (% of total)
+    - EN.ATM.PM25.MC.M3 # PM2.5 air pollution mean annual exposure (micrograms per cubic meter)
+
+    # 8. Education efficiency
+    - SE.ADT.LITR.ZS # Literacy rate, adult total (% of people ages 15 and above)
+    - SE.XPD.TOTL.GB.ZS # Government expenditure on education, total (% of government expenditure)
+    - SE.PRM.ENRR # School enrollment, primary (% gross)
+
+    # 9. Carbon intensity (emissions per GDP)
+    - EN.GHG.CO2.RT.GDP.PP.KD # Carbon intensity of GDP (kg CO2e per 2021 PPP)
+    - EN.GHG.CO2.RT.GDP.KD # Carbon intensity of GDP (kg CO2e per constant 2015 US$ of GDP)
+
+    # 10. Green tech, Investments, R&D
+    - GB.XPD.RSDV.GD.ZS # Research and development expenditure (% of GDP)
+    - IP.PAT.RESD # Patent applications, residents
+    - NY.GDP.MKTP.KD.ZG # GDP growth (annual %)
+
+    # 11. Climate Risk indicators
+    - EN.CLC.DRSK.XQ # Disaster risk reduction progress score (1-5 scale), 5 best
+    - EN.CLC.MDAT.ZS # Droughts, floods, extreme temperatures (% of population, average 1990-2009)
+
+    # 12. Natural Resource Depletion
+    - NY.ADJ.DRES.GN.ZS # Adjusted savings: natural resources depletion (% of GNI)
+
+
+# Our World in Data configuration
+owid_api:
+  output_path: owid
+  # GitHub repository contains the datasets
+  metadata_url: https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-codebook.csv 
+  data_url: https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv
+  # interesting attributes from the metadata
+  metadata_attributes:
+    - column
+    - description
+    - unit
+    - source
+  indicators:
+    # - population
+    # - gdp
+    # - cement_co2
+    # - cement_co2_per_capita
+    # - co2
+    # - co2_growth_abs
+    # - co2_growth_prct
+    # - co2_including_luc
+    # - co2_including_luc_growth_abs
+    # - co2_including_luc_growth_prct
+    # - co2_including_luc_per_capita
+    # - co2_including_luc_per_gdp
+    # - co2_including_luc_per_unit_energy
+    # - co2_per_capita
+    # - co2_per_gdp
+    # - co2_per_unit_energy
+    # - coal_co2
+    # - coal_co2_per_capita
+    # - consumption_co2
+    # - consumption_co2_per_capita
+    # - consumption_co2_per_gdp
+    # - cumulative_cement_co2
+    # - cumulative_co2
+    # - cumulative_co2_including_luc
+    # - cumulative_coal_co2
+    # - cumulative_flaring_co2
+    # - cumulative_gas_co2
+    # - cumulative_luc_co2
+    # - cumulative_oil_co2
+    # - cumulative_other_co2
+    # - energy_per_capita
+    # - energy_per_gdp
+    # - flaring_co2
+    # - flaring_co2_per_capita
+    # - gas_co2
+    # - gas_co2_per_capita
+    # - ghg_excluding_lucf_per_capita
+    # - ghg_per_capita
+    # - land_use_change_co2
+    # - land_use_change_co2_per_capita
+    # - methane
+    # - methane_per_capita
+    # - nitrous_oxide
+    # - nitrous_oxide_per_capita
+    # - oil_co2
+    # - oil_co2_per_capita
+    # - other_co2_per_capita
+    # - other_industry_co2
+    # - primary_energy_consumption
+    # - share_global_cement_co2
+    # - share_global_co2
+    # - share_global_co2_including_luc
+    # - share_global_coal_co2
+    # - share_global_cumulative_cement_co2
+    # - share_global_cumulative_co2
+    # - share_global_cumulative_co2_including_luc
+    # - share_global_cumulative_coal_co2
+    # - share_global_cumulative_flaring_co2
+    # - share_global_cumulative_gas_co2
+    # - share_global_cumulative_luc_co2
+    # - share_global_cumulative_oil_co2
+    # - share_global_cumulative_other_co2
+    # - share_global_flaring_co2
+    # - share_global_gas_co2
+    # - share_global_luc_co2
+    # - share_global_oil_co2
+    # - share_global_other_co2
+    # - share_of_temperature_change_from_ghg
+    # - temperature_change_from_ch4
+    # - temperature_change_from_co2
+    # - temperature_change_from_ghg
+    # - temperature_change_from_n2o
+    # - total_ghg
+    # - total_ghg_excluding_lucf
+    # - trade_co2
+    # - trade_co2_share
+
+    # 1. Emissions per capita
+    - cement_co2_per_capita
+    - co2_including_luc_per_capita
+    - co2_per_capita
+    - coal_co2_per_capita
+    - consumption_co2_per_capita
+    - flaring_co2_per_capita
+    - gas_co2_per_capita
+    - ghg_excluding_lucf_per_capita
+    - ghg_per_capita
+    - methane_per_capita
+    - nitrous_oxide_per_capita
+    - oil_co2_per_capita
+    - other_co2_per_capita
+
+    # 2. Renewable energy share
+    - primary_energy_consumption
+    - energy_per_capita
+
+    # 3. Deforestation rates/emissions
+    - cumulative_luc_co2
+    - land_use_change_co2
+    - land_use_change_co2_per_capita
+    - share_global_luc_co2
+    - share_global_cumulative_luc_co2
+
+    # 4. Water stress levels
+
+    # 5. Waste equivalent emissions
+
+    # 6. Health expenditure
+
+    # 7. Air pollution
+    - methane
+    - nitrous_oxide
+    - temperature_change_from_ch4
+    - temperature_change_from_n2o
+
+    # 8. Education efficiency
+
+    # 9. Carbon intensity (emissions per GDP)
+    - co2_including_luc_per_gdp
+    - co2_per_gdp
+    - consumption_co2_per_gdp
+    - energy_per_gdp
+
+    # 10. Green tech, Investments, R&D
+
+    # 11. Climate Risk indicators
+
+    # 12. Natural Resource Depletion
+
+sac:
+  # Datasource 1: World Bank Open Data
+  worldbank:
+    # 1. Emissions per capita
+    EN.GHG.ALL.PC.CE.AR5:
+      description: "Total greenhouse gas emissions excluding LULUCF per capita (t CO2e/capita)"
+      high_rank_last: True 
+    # 2. Renewable energy share
+    EG.FEC.RNEW.ZS:
+      description: "Renewable energy consumption (% of total final energy consumption)"
+      high_rank_last: False 
+    # 4. Water stress levels
+    ER.H2O.FWST.ZS:
+      description: "Level of water stress: freshwater withdrawal as a proportion of available freshwater resources"
+      high_rank_last: True 
+    # 5. Waste equivalent emissions
+    EN.GHG.CO2.WA.MT.CE.AR5:
+      description: "Carbon dioxide (CO2) emissions from Waste (Mt CO2e)"
+      high_rank_last: True 
+    # 6. Health expenditure
+    SH.XPD.CHEX.PC.CD:
+      description: "Current health expenditure per capita (current US$)"
+      high_rank_last: False 
+    # 7. Air pollution
+    EN.ATM.PM25.MC.M3:
+      description: "PM2.5 air pollution mean annual exposure (micrograms per cubic meter)"
+      high_rank_last: True 
+    # 8. Education efficiency
+    SE.PRM.ENRR:
+      description: "School enrollment, primary (% gross)"
+      high_rank_last: False 
+    # 9. Carbon intensity (emissions per GDP)
+    EN.GHG.CO2.RT.GDP.KD:
+      description: "Carbon intensity of GDP (kg CO2e per constant 2015 US$ of GDP)"
+      high_rank_last: True 
+    # 10. Green tech, Investments, R&D
+    NY.GDP.MKTP.KD.ZG:
+      description: "GDP growth (annual %)"
+      high_rank_last: False 
+    # 12. Natural Resource Depletion
+    NY.ADJ.DRES.GN.ZS:
+      description: "Adjusted savings: natural resources depletion (% of GNI)"
+      high_rank_last: True # High values are bad for sustainability
+
+  # Datasource 2: Our World in Data
+  owid:
+    # 3. Deforestation rates/emissions
+    land_use_change_co2_per_capita:
+      description: "CO2 emissions from land use change per capita"
+      high_rank_last: True       
+    
+
+# date range for data retrieval
+date_range:
+  start_year: 2018
+  end_year: 2024
+
