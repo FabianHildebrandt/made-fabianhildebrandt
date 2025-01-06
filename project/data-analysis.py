@@ -235,22 +235,7 @@ def plot_gdf(gdf : gpd.GeoDataFrame, column : str, suptitle : str):
 
     plt.close()
 
-def normalize_ranking(data : pd.DataFrame, indicator : str = 'value') -> pd.DataFrame:
-    '''
-    Returns a max-normalized ranking of the countries in the range 0...1
-
-    Args:
-        data (pd.DataFrame): Contains the countries and their ranking
-        indicator (str): Column of the DataFrame which holds the indicator rankings.
-
-    Returns:
-        DataFrame with a Max-Normalized ranking
-    '''
-    data[indicator] /= data[indicator].max()
-
-    return data
-
-def create_and_plot_combined_ranking(rankings : list, gdf: gpd.GeoDataFrame, ranking_name : str, suptitle : str, minimum_data_ratio : float = 0.8):
+def create_and_plot_combined_ranking(rankings : list, gdf: gpd.GeoDataFrame, ranking_name : str, suptitle : str, minimum_data_ratio : float = 0.7):
     '''
     Combine multiple rankings to one joint ranking and plot the results.
 
@@ -280,6 +265,8 @@ def create_and_plot_combined_ranking(rankings : list, gdf: gpd.GeoDataFrame, ran
     rankings.columns = [ranking_name]
     rankings = rank_countries_by_indicator(rankings, ranking_name, high_rank_last=True)
     merged_ranking_gdf = pd.merge(cleaned_gdf, rankings, left_index=True, right_index=True, how='outer')
+
+    print(excluded_countries)
 
     plot_gdf(merged_ranking_gdf, column=ranking_name, suptitle = suptitle)
 

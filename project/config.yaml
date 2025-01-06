@@ -43,9 +43,8 @@ countries:
   Bermuda: BMU
   Cayman Islands: CYM
   Curacao: CUW
-  # excluded French Guiana and Martinique as they belong to France
-  # French Guiana: GUF
-  # Martinique: MTQ
+  French Guiana: GUF
+  Martinique: MTQ
   Puerto Rico: PRI
   Saint Maarten: SXM
   Turks and Caicos Islands: TCA
