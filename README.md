@@ -1,6 +1,8 @@
 # SCA 2024 - Sustainability Championship of America 2024
 
-The Sustainability Championship of America 2024 (SCA 2024) presents a comparison of the national sustainability performance of the Americas in three dimensions: environmental, economical, and social. The analysis uses carefully selected comparative indicators that avoid penalizing smaller or economically emerging nations. The analysis introduces two distinct recognition categories: overall champions demonstrating consistent high performance and rising stars with significant recent improvements. It will also show which countries are latecomers struggling with sustainability challenges. 
+The Sustainability Championship of America 2024 (SCA 2024) presents a comparison of the national sustainability performance of the Americas in three dimensions: environmental, economical, and social. The analysis uses carefully selected comparative indicators that avoid penalizing smaller or economically emerging nations. The analysis introduces two distinct recognition categories: overall champions demonstrating consistent high performance and rising stars with significant recent improvements. It will also show which countries are latecomers struggling with sustainability challenges.
+
+![Overall champion](./project/figures/Overall%20Champion.png)
 
 # How to get started
 
@@ -38,4 +40,4 @@ python ./project/data-analysis.py
 The visualizations and reports are free and open-source under the CC-BY License.
 The data is subject to the license terms from the original third-party authors. The original source of the data is shown in the *LICENSES.xlsx*. Please check the license of any such third-party data before use and redistribution.
 
-![CC-BY 4.0](https://licensebuttons.net/l/cc-by/4.0/88x31.png)
+![CC-BY 4.0](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by.png)
