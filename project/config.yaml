@@ -127,7 +127,7 @@ owid_api:
     # - gdp
     # - cement_co2
     # - cement_co2_per_capita
-    # - co2
+    - co2
     # - co2_growth_abs
     # - co2_growth_prct
     # - co2_including_luc
