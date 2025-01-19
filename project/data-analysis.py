@@ -216,7 +216,7 @@ def plot_gdf(gdf : gpd.GeoDataFrame, column : str, suptitle : str):
             plt.cm.RdYlGn_r(countries_of_interest[column] / max(countries_of_interest[column]))  # Normalize scores
         )
     ]
-
+    # Adjust this to show other continents
     ax.set_xlim(left=-190, right=20)
     # Make sure that the legend is properly displayed
     ax.legend(handles=legend_handles, title = 'Ranking', loc='center right', fontsize='medium', bbox_to_anchor = (1.0,0.5))

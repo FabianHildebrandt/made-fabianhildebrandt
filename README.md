@@ -8,8 +8,9 @@ The Sustainability Championship of America 2024 (SCA 2024) presents a comparison
 
 1. [Project Report](./project/analysis-report.pdf)
 2. [Data Report](./project/data-report.pdf)
-3. Full rankings: [Overall champions](./project/data/Overall%20Champion.xlsx), [Rising stars](./project/data/Overall%20Champion.xlsx)
-4. [Further visualizations](./project/figures)
+3. [Project presentation](./project/presentation-video.md)
+4. Full rankings: [Overall champions](./project/data/Overall%20Champion.xlsx), [Rising stars](./project/data/Overall%20Champion.xlsx)
+5. [Further visualizations](./project/figures)
 
 # Reproduce the results 
 
@@ -34,7 +35,7 @@ chxmod +x ./project/pipeline.sh
 python ./project/data-analysis.py
 ```
 
-5. Adjust the [configuration](./project/config.yaml) to do your own experiments. 
+5. Adjust the [configuration](./project/config.yaml) to do your own experiments. Please note, that you need to adjust the range of the map plots in the data analysis (s. [here](./project/data-analysis.py#L220)) to show other continents.
 
 # License
 The visualizations and reports are free and open-source under the CC-BY License.
