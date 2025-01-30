@@ -14,7 +14,7 @@ The Sustainability Championship of America 2024 (SCA 2024) presents a comparison
 
 # Reproduce the results 
 
-1. Clone the repository.
+1. Fork and clone the repository.
 ```bash
 git clone https://github.com/FabianHildebrandt/made-fabianhildebrandt.git
 ```
@@ -22,6 +22,11 @@ git clone https://github.com/FabianHildebrandt/made-fabianhildebrandt.git
 2. Go to the main directory. 
 ```bash
 cd made-fabianhildebrandt
+```
+
+3. Install the requirements
+```bash
+pip install -r requirements.txt
 ```
 
 3. Run the pipeline.
